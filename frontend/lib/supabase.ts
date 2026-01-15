@@ -15,12 +15,28 @@ export interface Student {
     issued_at: string | null;
     created_at: string;
 
-    // New comprehensive fields
+    // Comprehensive credential fields
+    student_name?: string;
+    father_name?: string;
+    phone_number?: string;
+    personal_email?: string;
+    student_email?: string;
+    student_id_number?: string;
+    cnic?: string;
+    degree_level?: string;
+    department?: string;
+    cgpa?: number;
+    internal_grade?: string;
+    graduation_start_date?: string;
+    graduation_end_date?: string;
+    transcript_url?: string | null;
+    final_comment?: string | null;
+
+    // Legacy optional fields
     major?: string;
     gpa?: number;
     graduation_date?: string;
     national_id?: string;
-    department?: string;
 }
 
 // Supabase client singleton
