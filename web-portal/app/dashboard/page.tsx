@@ -21,6 +21,7 @@ import { CredentialStatCard } from '@/components/credential-stat-card';
 import { CredentialPreviewCard } from '@/components/credential-preview-card';
 import { EmptyState } from '@/components/empty-state';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface Credential {
     id: string;
@@ -35,11 +36,18 @@ interface Credential {
 }
 
 export default function DashboardPage() {
-    const { user, logout } = useAuth();
+    const { user, logout, loading } = useAuth();
     const [credentials, setCredentials] = useState<Credential[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [credLoading, setCredLoading] = useState(true);
+    const router = useRouter();
 
     useEffect(() => {
+        // Redirect to login if not authenticated
+        if (!loading && !user) {
+            router.push('/login');
+            return;
+        }
+
         async function loadCredentials() {
             if (!user?.email) return;
 
@@ -49,18 +57,20 @@ export default function DashboardPage() {
             } catch (error) {
                 console.error('Failed to load credentials:', error);
             } finally {
-                setLoading(false);
+                setCredLoading(false);
             }
         }
 
-        loadCredentials();
-    }, [user]);
+        if (user) {
+            loadCredentials();
+        }
+    }, [user, loading, router]);
 
     const latestCredential = credentials[0];
     const totalCredentials = credentials.length;
     const verifiedCount = credentials.filter(c => c.status === 'issued').length;
 
-    if (loading) {
+    if (loading || credLoading) {
         return <DashboardSkeleton />;
     }
 
