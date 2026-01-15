@@ -133,6 +133,36 @@ export default function DashboardPage() {
                             />
                         </div>
 
+                        {/* Quick Actions Card */}
+                        <Card className="p-6 bg-primary/5 border-primary/20">
+                            <div className="flex items-center gap-2 mb-4">
+                                <div className="bg-primary/10 p-2 rounded-lg">
+                                    <Share2 className="h-5 w-5 text-primary" />
+                                </div>
+                                <h3 className="font-semibold text-lg">Quick Actions</h3>
+                            </div>
+                            <div className="grid md:grid-cols-3 gap-3">
+                                <Link href="/vault">
+                                    <Button variant="default" className="w-full">
+                                        <GraduationCap className="h-4 w-4 mr-2" />
+                                        View All
+                                    </Button>
+                                </Link>
+                                <Link href="/vault">
+                                    <Button variant="default" className="w-full">
+                                        <Download className="h-4 w-4 mr-2" />
+                                        Download
+                                    </Button>
+                                </Link>
+                                <Link href="/vault">
+                                    <Button variant="default" className="w-full">
+                                        <Share2 className="h-4 w-4 mr-2" />
+                                        Share
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Card>
+
                         {/* Recent Credentials */}
                         <div>
                             <div className="flex items-center justify-between mb-6">
