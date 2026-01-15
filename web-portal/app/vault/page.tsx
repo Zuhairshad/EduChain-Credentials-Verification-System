@@ -272,11 +272,11 @@ function CredentialCard({ credential }: { credential: Credential }) {
                     <div className="grid md:grid-cols-3 gap-4">
                         <div>
                             <p className="text-sm text-muted-foreground">CGPA</p>
-                            <p className="font-medium text-xl">{credential.cgpa}</p>
+                            <p className="font-medium">{credential.cgpa}</p>
                         </div>
                         <div>
                             <p className="text-sm text-muted-foreground">Internal Grade</p>
-                            <p className="font-medium text-xl">{credential.internal_grade}</p>
+                            <p className="font-medium">{credential.internal_grade}</p>
                         </div>
                         {credential.graduation_start_date && (
                             <div>

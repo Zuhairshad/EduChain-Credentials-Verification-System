@@ -133,59 +133,54 @@ export default function DashboardPage() {
                             />
                         </div>
 
-                        {/* Quick Actions Card */}
-                        <Card className="p-6 bg-primary/5 border-primary/20">
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="bg-primary/10 p-2 rounded-lg">
-                                    <Share2 className="h-5 w-5 text-primary" />
-                                </div>
-                                <h3 className="font-semibold text-lg">Quick Actions</h3>
+                        {/* Credentials and Quick Actions - Side by Side */}
+                        <div className="grid lg:grid-cols-4 gap-6">
+                            {/* Quick Actions - Left Column (1 column) */}
+                            <div className="lg:col-span-1">
+                                <Card className="p-6 bg-primary/5 border-primary/20 h-full">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="bg-primary/10 p-2 rounded-lg">
+                                            <Share2 className="h-5 w-5 text-primary" />
+                                        </div>
+                                        <h3 className="font-semibold text-lg">Quick Actions</h3>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <Link href="/vault">
+                                            <Button variant="default" className="w-full">
+                                                <GraduationCap className="h-4 w-4 mr-2" />
+                                                View All
+                                            </Button>
+                                        </Link>
+                                        <Link href="/vault">
+                                            <Button variant="default" className="w-full">
+                                                <Download className="h-4 w-4 mr-2" />
+                                                Download
+                                            </Button>
+                                        </Link>
+                                        <Link href="/vault">
+                                            <Button variant="default" className="w-full">
+                                                <Share2 className="h-4 w-4 mr-2" />
+                                                Share
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                </Card>
                             </div>
-                            <div className="grid md:grid-cols-3 gap-3">
-                                <Link href="/vault">
-                                    <Button variant="default" className="w-full">
-                                        <GraduationCap className="h-4 w-4 mr-2" />
-                                        View All
-                                    </Button>
-                                </Link>
-                                <Link href="/vault">
-                                    <Button variant="default" className="w-full">
-                                        <Download className="h-4 w-4 mr-2" />
-                                        Download
-                                    </Button>
-                                </Link>
-                                <Link href="/vault">
-                                    <Button variant="default" className="w-full">
-                                        <Share2 className="h-4 w-4 mr-2" />
-                                        Share
-                                    </Button>
-                                </Link>
-                            </div>
-                        </Card>
 
-                        {/* Recent Credentials */}
-                        <div>
-                            <div className="flex items-center justify-between mb-6">
-                                <div>
+                            {/* Recent Credentials - Right Column (3 columns) */}
+                            <div className="lg:col-span-3">
+                                <div className="mb-6">
                                     <h2 className="text-2xl font-bold">Your Credentials</h2>
                                     <p className="text-muted-foreground">
                                         Blockchain-verified academic achievements
                                     </p>
                                 </div>
-                                {credentials.length > 3 && (
-                                    <Link href="/vault">
-                                        <Button variant="outline">
-                                            View All
-                                            <ArrowRight className="h-4 w-4 ml-2" />
-                                        </Button>
-                                    </Link>
-                                )}
-                            </div>
 
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {credentials.slice(0, 3).map((credential) => (
-                                    <CredentialPreviewCard key={credential.id} {...credential} />
-                                ))}
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {credentials.slice(0, 3).map((credential) => (
+                                        <CredentialPreviewCard key={credential.id} {...credential} />
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
