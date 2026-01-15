@@ -37,7 +37,7 @@ export default function LoginPage() {
                 <ThemeToggle />
             </div>
 
-            <Card className="w-full max-w-md">
+            <Card className="w-full max-w-md animate-in fade-in-50 slide-in-from-bottom-4 duration-500 shadow-xl">
                 <CardHeader className="space-y-3 text-center">
                     <div className="flex justify-center">
                         <div className="bg-primary/10 p-3 rounded-full">

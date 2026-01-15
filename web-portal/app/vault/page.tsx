@@ -30,6 +30,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
+import { toast } from 'sonner';
 
 interface Credential {
     id: string;
@@ -154,7 +155,7 @@ function CredentialCard({ credential }: { credential: Credential }) {
 
     const handleCopyLink = () => {
         navigator.clipboard.writeText(verificationUrl);
-        alert('Link copied to clipboard!');
+        toast.success('Link copied to clipboard!');
     };
 
     const handleDownloadProof = () => {
@@ -179,10 +180,11 @@ function CredentialCard({ credential }: { credential: Credential }) {
         a.href = url;
         a.download = `${credential.student_name.replace(/ /g, '_')}_proof.json`;
         a.click();
+        toast.success('Proof downloaded successfully!');
     };
 
     return (
-        <Card className="border-2">
+        <Card className="border-2 hover:shadow-2xl transition-all duration-300 hover:scale-[1.01]">
             <CardHeader className="space-y-4">
                 <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
