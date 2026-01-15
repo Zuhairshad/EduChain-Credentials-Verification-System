@@ -35,17 +35,24 @@ import { toast } from 'sonner';
 interface Credential {
     id: string;
     student_name: string;
+    father_name?: string;
+    phone_number?: string;
+    personal_email?: string;
+    student_email?: string;
     student_id_number: string;
+    cnic?: string;
     degree_level: string;
     department: string;
     cgpa: number;
     internal_grade: string;
+    graduation_start_date?: string;
     graduation_end_date: string;
     status: string;
     transaction_hash: string;
     merkle_root: string;
     merkle_proof: string;
     transcript_url?: string;
+    final_comment?: string;
 }
 
 export default function VaultPage() {
@@ -212,24 +219,82 @@ function CredentialCard({ credential }: { credential: Credential }) {
             </CardHeader>
 
             <CardContent className="space-y-6">
-                {/* Student Info */}
-                <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                        <p className="text-sm text-muted-foreground">Student Name</p>
-                        <p className="font-medium">{credential.student_name}</p>
+                {/* Personal Information */}
+                <div>
+                    <h3 className="font-semibold text-lg mb-3">Personal Information</h3>
+                    <div className="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <p className="text-sm text-muted-foreground">Student Name</p>
+                            <p className="font-medium">{credential.student_name}</p>
+                        </div>
+                        {credential.father_name && (
+                            <div>
+                                <p className="text-sm text-muted-foreground">Father's Name</p>
+                                <p className="font-medium">{credential.father_name}</p>
+                            </div>
+                        )}
+                        <div>
+                            <p className="text-sm text-muted-foreground">Student ID</p>
+                            <p className="font-medium font-mono">{credential.student_id_number}</p>
+                        </div>
+                        {credential.cnic && (
+                            <div>
+                                <p className="text-sm text-muted-foreground">CNIC</p>
+                                <p className="font-medium font-mono">{credential.cnic}</p>
+                            </div>
+                        )}
+                        {credential.phone_number && (
+                            <div>
+                                <p className="text-sm text-muted-foreground">Phone</p>
+                                <p className="font-medium">{credential.phone_number}</p>
+                            </div>
+                        )}
+                        {credential.personal_email && (
+                            <div>
+                                <p className="text-sm text-muted-foreground">Personal Email</p>
+                                <p className="font-medium text-xs">{credential.personal_email}</p>
+                            </div>
+                        )}
+                        {credential.student_email && (
+                            <div>
+                                <p className="text-sm text-muted-foreground">Student Email</p>
+                                <p className="font-medium text-xs">{credential.student_email}</p>
+                            </div>
+                        )}
                     </div>
-                    <div>
-                        <p className="text-sm text-muted-foreground">Student ID</p>
-                        <p className="font-medium font-mono">{credential.student_id_number}</p>
+                </div>
+
+                <Separator />
+
+                {/* Academic Information */}
+                <div>
+                    <h3 className="font-semibold text-lg mb-3">Academic Details</h3>
+                    <div className="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <p className="text-sm text-muted-foreground">CGPA</p>
+                            <p className="font-medium text-xl">{credential.cgpa}</p>
+                        </div>
+                        <div>
+                            <p className="text-sm text-muted-foreground">Internal Grade</p>
+                            <p className="font-medium text-xl">{credential.internal_grade}</p>
+                        </div>
+                        {credential.graduation_start_date && (
+                            <div>
+                                <p className="text-sm text-muted-foreground">Start Date</p>
+                                <p className="font-medium">{new Date(credential.graduation_start_date).toLocaleDateString()}</p>
+                            </div>
+                        )}
+                        <div>
+                            <p className="text-sm text-muted-foreground">Graduation Date</p>
+                            <p className="font-medium">{new Date(credential.graduation_end_date).toLocaleDateString()}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p className="text-sm text-muted-foreground">CGPA</p>
-                        <p className="font-medium">{credential.cgpa} ({credential.internal_grade})</p>
-                    </div>
-                    <div>
-                        <p className="text-sm text-muted-foreground">Graduation Date</p>
-                        <p className="font-medium">{new Date(credential.graduation_end_date).toLocaleDateString()}</p>
-                    </div>
+                    {credential.final_comment && (
+                        <div className="mt-4">
+                            <p className="text-sm text-muted-foreground">Comments</p>
+                            <p className="font-medium italic text-sm mt-1">{credential.final_comment}</p>
+                        </div>
+                    )}
                 </div>
 
                 <Separator />
