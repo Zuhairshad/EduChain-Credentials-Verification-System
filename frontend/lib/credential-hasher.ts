@@ -3,14 +3,9 @@ import { MerkleTree } from 'merkletreejs';
 
 /**
  * Hash credential data to create a leaf hash
+ * Accepts any credential object with student data
  */
-export function hashCredential(credential: {
-    id: string;
-    studentName: string;
-    degree: string;
-    issueDate: string;
-    institution: string;
-}): string {
+export function hashCredential(credential: Record<string, any>): string {
     // Create deterministic string from credential
     const credentialString = JSON.stringify(credential, Object.keys(credential).sort());
 
