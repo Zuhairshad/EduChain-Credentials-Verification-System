@@ -135,33 +135,21 @@ export default function DashboardPage() {
 
                         {/* Recent Credentials */}
                         <div>
-                            <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+                            <div className="flex items-center justify-between mb-6">
                                 <div>
                                     <h2 className="text-2xl font-bold">Your Credentials</h2>
                                     <p className="text-muted-foreground">
                                         Blockchain-verified academic achievements
                                     </p>
                                 </div>
-                                <div className="flex items-center gap-2 flex-wrap">
+                                {credentials.length > 3 && (
                                     <Link href="/vault">
-                                        <Button variant="outline" size="sm">
-                                            <GraduationCap className="h-4 w-4 mr-2" />
+                                        <Button variant="outline">
                                             View All
+                                            <ArrowRight className="h-4 w-4 ml-2" />
                                         </Button>
                                     </Link>
-                                    <Link href="/vault">
-                                        <Button variant="outline" size="sm">
-                                            <Download className="h-4 w-4 mr-2" />
-                                            Download
-                                        </Button>
-                                    </Link>
-                                    <Link href="/vault">
-                                        <Button variant="outline" size="sm">
-                                            <Share2 className="h-4 w-4 mr-2" />
-                                            Share
-                                        </Button>
-                                    </Link>
-                                </div>
+                                )}
                             </div>
 
                             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
