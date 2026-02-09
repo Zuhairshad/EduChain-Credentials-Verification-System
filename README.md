@@ -1,4 +1,4 @@
-# EduChain — Academic Credentials Verification System
+# EduChain Academic Credentials Verification System
 
 EduChain is a blockchain-based platform for issuing, managing, and verifying academic credentials in a secure, tamper-resistant, and privacy-preserving manner.  
 It replaces fragile, centralized verification processes with transparent, trustless, and verifiable on-chain credentials.
@@ -48,8 +48,7 @@ The platform ensures:
 
 ## Tech Stack
 
-### Smart Contracts
-- Solidity  
+### Smart Contracts 
 - Hardhat  
 - Polygon Amoy Testnet (EVM-compatible)
 
