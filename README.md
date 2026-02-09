@@ -1,118 +1,134 @@
-EduChain Credentials Verification System
-EduChain is a blockchain-based platform for issuing, managing, and verifying academic credentials in a secure, tamper-resistant, and privacy-preserving way.
-​
+# EduChain — Academic Credentials Verification System
 
-It consists of smart contracts, an institutional web portal, a student-facing app, and a verifier app deployed as a full-stack application.
-​
+EduChain is a blockchain-based platform for issuing, managing, and verifying academic credentials in a secure, tamper-resistant, and privacy-preserving manner.  
+It replaces fragile, centralized verification processes with transparent, trustless, and verifiable on-chain credentials.
 
-Features
-On-chain credential issuance using Solidity smart contracts deployed on an EVM-compatible network.
-​
+The system is implemented as a full-stack application consisting of smart contracts, an institutional web portal, a student-facing app, and a verifier app—each designed for a specific role in the academic credential lifecycle.
 
-Role-based flows for institutions, students, and verifiers (e.g., universities issue, students manage, employers verify).
-​
+**Live Demo:**  
+https://edu-chain-credentials-verification.vercel.app/
 
-Web portal for institutions to issue and manage credentials, view dashboards, and access quick actions.
-​
+---
 
-Student app to view credentials, share proofs, and manage access to their academic records.
-​
+## Overview
 
-Verifier app to verify authenticity of credentials directly against the blockchain.
-​
+EduChain enables educational institutions to issue credentials directly to the blockchain, allows students to manage and selectively share their academic records, and empowers employers or third parties to verify authenticity without relying on intermediaries.
 
-Deployed production build accessible at: https://edu-chain-credentials-verification.vercel.app/
-​
+The platform ensures:
+- Credential authenticity
+- Tamper resistance
+- User-controlled data sharing
+- Public verifiability with privacy preservation
 
-Tech Stack
-Smart contracts: Polygon Amoy Testnet & Hardhat.
-​
+---
 
-Frontend / apps: TypeScript (React/Next.js-based frontends across frontend, student-app, verifier-app, and web-portal).
-​
+## Features
 
-Styling: Tailwind CSS & Shadcn UI.
-​
+- **On-chain Credential Issuance**  
+  Academic credentials are issued using Solidity smart contracts deployed on an EVM-compatible blockchain.
 
-Monorepo Structure
-contracts/ – Solidity smart contracts for credential issuance and verification.
-​
+- **Role-Based Access & Flows**  
+  - **Institutions:** Issue and manage credentials via a dedicated web portal  
+  - **Students:** View, manage, and share credentials through a student app  
+  - **Verifiers:** Validate credentials directly against the blockchain using a verifier app  
 
-frontend/ – Shared or main frontend application code (TypeScript-based web UI).
-​
+- **Institutional Web Portal**  
+  Dashboard for credential issuance, credential lists, quick actions, and institutional vault management.
 
-student-app/ – Student-facing interface to manage and share credentials.
-​
+- **Student Application**  
+  Interface for students to view credentials, manage access, and share verifiable proofs.
 
-verifier-app/ – Verifier-facing interface to check credential authenticity against the chain.
-​
+- **Verifier Application**  
+  Simple verification interface to validate credential authenticity against deployed smart contracts.
 
-web-portal/ – Institutional portal dashboard (includes credential lists, quick actions, and vault UI).
-​
+- **Production Deployment**  
+  Fully deployed and accessible via Vercel with multiple production builds.
 
-Getting Started
-Clone the repository:
+---
 
-bash
+## Tech Stack
+
+### Smart Contracts
+- Solidity  
+- Hardhat  
+- Polygon Amoy Testnet (EVM-compatible)
+
+### Frontend / Applications
+- TypeScript  
+- React / Next.js  
+- Tailwind CSS  
+- shadcn/ui  
+
+---
+
+## Monorepo Structure
+
+contracts/ # Solidity smart contracts for credential issuance & verification
+frontend/ # Shared or main frontend application
+student-app/ # Student-facing credential management app
+verifier-app/ # Verifier-facing credential validation app
+web-portal/ # Institutional dashboard and management portal
+
+
+---
+
+## Getting Started
+
+### Clone the Repository
+```bash
 git clone https://github.com/Zuhairshad/EduChain-Credentials-Verification-System.git
 cd EduChain-Credentials-Verification-System
-Install dependencies (example for a pnpm/yarn/npm monorepo – adjust to your setup):
+Install Dependencies
+(Adjust based on your package manager)
 
-bash
-# root install (if using a monorepo tool)
 npm install
 # or
 pnpm install
 # or
 yarn install
-Build and run each app (example commands, update to your actual scripts):
-
-bash
-# Web portal
+Running the Applications
+Web Portal
 cd web-portal
 npm install
 npm run dev
-
-# Student app
+Student App
 cd ../student-app
 npm install
 npm run dev
-
-# Verifier app
+Verifier App
 cd ../verifier-app
 npm install
 npm run dev
-
-# Frontend (if used as main shell)
+Frontend (if used as main shell)
 cd ../frontend
 npm install
 npm run dev
-Compile and deploy contracts (example):
-
-bash
-cd ../contracts
+Smart Contracts
+Compile & Deploy
+cd contracts
 npm install
 npm run compile
 npm run deploy
+Contracts are deployed on the Polygon Amoy Testnet.
+
 Usage Flow
-Institutions log into the web portal to issue credentials to students’ blockchain addresses.
-​
+Institutions log into the web portal and issue academic credentials to students’ blockchain addresses.
 
-Students use the student app to view their credentials and selectively share them with verifiers.
-​
+Students access the student app to view credentials and selectively share them with third parties.
 
-Verifiers use the verifier app to input credential identifiers or QR data and validate them against the smart contracts.
-​
+Verifiers use the verifier app to validate credentials using identifiers or shared proof data, verified directly on-chain.
 
 Deployment
-The project is deployed to Vercel, with multiple production deployments recorded in the repository’s Deployments section.
-​
-You can access the live app at: https://edu-chain-credentials-verification.vercel.app/
-​
+The project is deployed on Vercel, with multiple production deployments recorded in the repository’s Deployments section.
 
-Roadmap / Ideas
-Support for multiple institutions and multi-tenant configuration.
+Live Application:
+https://edu-chain-credentials-verification.vercel.app/
 
-Off-chain storage integration for larger documents with on-chain proofs.
+Roadmap / Future Enhancements
+Multi-institution and multi-tenant support
 
-Expanded verification methods (e.g., QR codes, short links, API integrations).
+Off-chain storage for large documents with on-chain cryptographic proofs
+
+Expanded verification methods (QR codes, short links, APIs)
+
+Improved privacy controls and selective disclosure mechanisms
