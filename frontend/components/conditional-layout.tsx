@@ -8,9 +8,10 @@ import { AppHeader } from "@/components/app-header";
 export function ConditionalLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const isLoginPage = pathname === '/login';
+    const isLandingPage = pathname === '/';
 
-    // Login page - no sidebar/header
-    if (isLoginPage) {
+    // Landing page and login page - no sidebar/header
+    if (isLoginPage || isLandingPage) {
         return <>{children}</>;
     }
 

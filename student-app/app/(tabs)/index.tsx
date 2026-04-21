@@ -72,7 +72,7 @@ export default function HomeScreen() {
     if (loading) {
         return (
             <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#007AFF" />
+                <ActivityIndicator size="large" color={colors.primary} />
             </View>
         );
     }
@@ -403,7 +403,6 @@ const styles = StyleSheet.create({
         marginLeft: 12,
     },
     modalButton: {
-        backgroundColor: '#007AFF',
         paddingVertical: 16,
         paddingHorizontal: 32,
         borderRadius: 12,

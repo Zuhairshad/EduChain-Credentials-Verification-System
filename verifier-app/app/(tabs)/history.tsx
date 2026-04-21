@@ -55,13 +55,13 @@ export default function HistoryScreen() {
     const getStatusColor = (status: string) => {
         switch (status) {
             case 'verified':
-                return '#34C759';
+                return '#FFD700'; // Gold
             case 'revoked':
-                return '#FF9500';
+                return '#ff3b30';
             case 'invalid':
-                return '#FF3B30';
+                return '#ff9500';
             case 'error':
-                return '#8E8E93';
+                return '#555';
             default:
                 return '#8E8E93';
         }
@@ -88,32 +88,36 @@ export default function HistoryScreen() {
             onPress={() => router.push(`/verification/${item.credentialId}`)}
         >
             <View style={styles.itemLeft}>
-                <Ionicons
-                    name={getStatusIcon(item.status) as any}
-                    size={32}
-                    color={getStatusColor(item.status)}
-                />
+                <View style={[styles.statusIconBg, { backgroundColor: 'rgba(255,215,0,0.05)' }]}>
+                    <Ionicons
+                        name={getStatusIcon(item.status) as any}
+                        size={28}
+                        color={getStatusColor(item.status)}
+                    />
+                </View>
                 <View style={styles.itemInfo}>
                     <Text style={styles.itemName}>{item.studentName}</Text>
                     <Text style={styles.itemDegree} numberOfLines={1}>
                         {item.degree}
                     </Text>
                     <Text style={styles.itemTime}>
-                        {new Date(item.timestamp).toLocaleString()}
+                        {new Date(item.timestamp).toLocaleDateString()} • {new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </Text>
                 </View>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#8E8E93" />
+            <Ionicons name="chevron-forward" size={20} color="#333" />
         </TouchableOpacity>
     );
 
     if (history.length === 0) {
         return (
             <View style={styles.emptyContainer}>
-                <Ionicons name="time-outline" size={64} color="#8E8E93" />
-                <Text style={styles.emptyText}>No verification history</Text>
+                <View style={styles.emptyIconCircle}>
+                    <Ionicons name="time-outline" size={48} color="#FFD700" />
+                </View>
+                <Text style={styles.emptyText}>No Verifications Yet</Text>
                 <Text style={styles.emptySubtext}>
-                    Verified credentials will appear here
+                    Activity from the portal will appear here
                 </Text>
             </View>
         );
@@ -125,20 +129,19 @@ export default function HistoryScreen() {
                 data={history}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
+                contentContainerStyle={styles.listContent}
                 refreshControl={
                     <RefreshControl
                         refreshing={refreshing}
                         onRefresh={onRefresh}
-                        tintColor="#007AFF"
+                        tintColor="#FFD700"
                     />
                 }
                 ListHeaderComponent={
                     <View style={styles.header}>
-                        <Text style={styles.headerText}>
-                            {history.length} verification{history.length !== 1 ? 's' : ''}
-                        </Text>
+                        <Text style={styles.headerTitle}>Recent Activity</Text>
                         <TouchableOpacity onPress={handleClearHistory}>
-                            <Text style={styles.clearButton}>Clear All</Text>
+                            <Text style={styles.clearButton}>Clear Logs</Text>
                         </TouchableOpacity>
                     </View>
                 }
@@ -150,20 +153,34 @@ export default function HistoryScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#1a1a1a',
+        backgroundColor: '#000',
+    },
+    listContent: {
+        paddingBottom: 40,
     },
     emptyContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#000',
+        padding: 40,
+    },
+    emptyIconCircle: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
         backgroundColor: '#1a1a1a',
-        padding: 24,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 24,
+        borderWidth: 1,
+        borderColor: '#333',
     },
     emptyText: {
         color: '#fff',
-        fontSize: 18,
-        fontWeight: '600',
-        marginTop: 16,
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginTop: 8,
     },
     emptySubtext: {
         color: '#8E8E93',
@@ -175,50 +192,64 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 16,
+        padding: 24,
+        paddingTop: 32,
     },
-    headerText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: '600',
+    headerTitle: {
+        color: '#FFD700',
+        fontSize: 18,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        letterSpacing: 1,
     },
     clearButton: {
-        color: '#FF3B30',
-        fontSize: 14,
-        fontWeight: '600',
+        color: '#ff4444',
+        fontSize: 12,
+        fontWeight: 'bold',
     },
     historyItem: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: '#2c2c2e',
+        backgroundColor: '#1a1a1a',
         marginHorizontal: 16,
         marginBottom: 12,
         padding: 16,
-        borderRadius: 12,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#333',
     },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         flex: 1,
     },
+    statusIconBg: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000',
+    },
     itemInfo: {
-        marginLeft: 12,
+        marginLeft: 16,
         flex: 1,
     },
     itemName: {
         color: '#fff',
         fontSize: 16,
-        fontWeight: '600',
-        marginBottom: 4,
+        fontWeight: 'bold',
+        marginBottom: 2,
     },
     itemDegree: {
-        color: '#8E8E93',
-        fontSize: 14,
+        color: '#FFD700',
+        fontSize: 12,
+        opacity: 0.8,
         marginBottom: 4,
     },
     itemTime: {
-        color: '#8E8E93',
-        fontSize: 12,
+        color: '#555',
+        fontSize: 10,
     },
 });

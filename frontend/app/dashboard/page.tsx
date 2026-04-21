@@ -18,7 +18,7 @@ import {
 import { getAllStudents, isSupabaseConfigured } from '@/lib/supabase';
 import type { Student } from '@/lib/supabase';
 import { format } from 'date-fns';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function DashboardPage() {
     const [students, setStudents] = useState<Student[]>([]);
@@ -131,7 +131,13 @@ export default function DashboardPage() {
                     </CardHeader>
                     <CardContent>
                         <ResponsiveContainer width="100%" height={200}>
-                            <LineChart data={chartData}>
+                            <AreaChart data={chartData}>
+                                <defs>
+                                    <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3} />
+                                        <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
+                                    </linearGradient>
+                                </defs>
                                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                                 <XAxis
                                     dataKey="date"
@@ -142,19 +148,20 @@ export default function DashboardPage() {
                                 />
                                 <Tooltip
                                     contentStyle={{
-                                        backgroundColor: 'var(--background)',
+                                        backgroundColor: 'var(--card)',
                                         border: '1px solid var(--border)',
                                         borderRadius: '6px',
                                     }}
                                 />
-                                <Line
+                                <Area
                                     type="monotone"
                                     dataKey="total"
                                     stroke="var(--primary)"
                                     strokeWidth={2}
-                                    dot={false}
+                                    fillOpacity={1}
+                                    fill="url(#colorTotal)"
                                 />
-                            </LineChart>
+                            </AreaChart>
                         </ResponsiveContainer>
                     </CardContent>
                 </Card>

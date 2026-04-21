@@ -40,7 +40,7 @@ export default function LoginPage() {
                         </div>
                     </div>
                     <div className="text-center">
-                        <CardTitle className="text-2xl">LGU Issuer Portal</CardTitle>
+                        <CardTitle className="text-2xl">EDU Chain — Issuer Portal</CardTitle>
                         <CardDescription>
                             Sign in to manage credentials
                         </CardDescription>

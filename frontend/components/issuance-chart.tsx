@@ -35,7 +35,7 @@ export function IssuanceChart({ data }: IssuanceChartProps) {
                         />
                         <Tooltip
                             contentStyle={{
-                                backgroundColor: 'var(--background)',
+                                backgroundColor: 'var(--card)',
                                 border: '1px solid var(--border)',
                                 borderRadius: '8px',
                             }}

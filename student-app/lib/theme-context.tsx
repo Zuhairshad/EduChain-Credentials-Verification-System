@@ -21,29 +21,29 @@ interface ThemeColors {
 }
 
 const lightColors: ThemeColors = {
-    background: '#f8f9fa',
+    background: '#f8fafc',
     cardBackground: '#ffffff',
-    primary: '#007AFF',
-    text: '#1a1a1a',
-    textSecondary: '#666666',
-    success: '#34C759',
-    warning: '#FFD700',
-    error: '#FF3B30',
-    border: '#e0e0e0',
-    cardShadow: 'rgba(0, 0, 0, 0.1)',
+    primary: '#2563eb',
+    text: '#0f172a',
+    textSecondary: '#64748b',
+    success: '#10b981',
+    warning: '#f59e0b',
+    error: '#ef4444',
+    border: '#e2e8f0',
+    cardShadow: 'rgba(0, 0, 0, 0.05)',
 };
 
 const darkColors: ThemeColors = {
-    background: '#000000',
-    cardBackground: '#1c1c1e',
-    primary: '#0a84ff',
-    text: '#ffffff',
-    textSecondary: '#8e8e93',
-    success: '#30d158',
-    warning: '#ffd60a',
-    error: '#ff453a',
-    border: '#38383a',
-    cardShadow: 'rgba(0, 0, 0, 0.5)',
+    background: '#020617',
+    cardBackground: '#0f172a',
+    primary: '#3b82f6',
+    text: '#f8fafc',
+    textSecondary: '#94a3b8',
+    success: '#10b981',
+    warning: '#f59e0b',
+    error: '#ef4444',
+    border: '#1e293b',
+    cardShadow: 'rgba(0, 0, 0, 0.3)',
 };
 
 interface ThemeContextType {

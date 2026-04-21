@@ -1,5 +1,7 @@
-import { redirect } from 'next/navigation';
+'use client';
+
+import { Component } from "@/components/ui/music-reactive-hero-section";
 
 export default function HomePage() {
-  redirect('/dashboard');
+  return <Component />;
 }

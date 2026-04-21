@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { GraduationCap, Loader2, AlertCircle } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useAuth } from '@/lib/auth-context';
 
@@ -32,70 +32,79 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4">
-            <div className="absolute top-4 right-4">
+        <div className="min-h-screen flex items-center justify-center p-4 bg-background transition-colors duration-300">
+            <div className="absolute top-4 right-4 z-10">
                 <ThemeToggle />
             </div>
 
-            <Card className="w-full max-w-md animate-in fade-in-50 slide-in-from-bottom-4 duration-500 shadow-xl">
-                <CardHeader className="space-y-3 text-center">
-                    <div className="flex justify-center">
-                        <div className="bg-primary/10 p-3 rounded-full">
-                            <GraduationCap className="h-10 w-10" />
-                        </div>
-                    </div>
-                    <CardTitle className="text-2xl">Digital Vault</CardTitle>
-                    <CardDescription>
-                        Your blockchain-verified credentials
-                    </CardDescription>
-                </CardHeader>
+            <div className="w-full max-w-sm relative z-10">
+                <div className="text-center mb-10 animate-slide-up">
+                    <h1 className="text-2xl font-semibold tracking-tight text-foreground">EDU Chain</h1>
+                    <p className="text-muted-foreground text-sm mt-1">Student Portal</p>
+                </div>
 
-                <CardContent>
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        {error && (
-                            <Alert variant="destructive">
-                                <AlertCircle className="h-4 w-4" />
-                                <AlertDescription>{error}</AlertDescription>
-                            </Alert>
-                        )}
+                <Card className="shadow-none border animate-slide-up-delay-1 rounded-sm">
+                    <CardHeader className="space-y-1 text-center pb-6">
+                        <CardTitle className="text-lg font-medium">Sign In</CardTitle>
+                        <CardDescription>
+                            Use your LGU credentials
+                        </CardDescription>
+                    </CardHeader>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="email">LGU Email</Label>
-                            <Input
-                                id="email"
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                                disabled={loading}
-                            />
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
-                            <Input
-                                id="password"
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                disabled={loading}
-                            />
-                        </div>
-
-                        <Button type="submit" className="w-full" disabled={loading}>
-                            {loading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Signing in...
-                                </>
-                            ) : (
-                                'Access Vault'
+                    <CardContent>
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            {error && (
+                                <Alert variant="destructive" className="rounded-sm">
+                                    <AlertDescription>{error}</AlertDescription>
+                                </Alert>
                             )}
-                        </Button>
-                    </form>
-                </CardContent>
-            </Card>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="email" className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">LGU Email</Label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    placeholder="sp-xxxx-bscs-xxx@cs.lgu.edu.pk"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    disabled={loading}
+                                    className="rounded-sm h-10"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="password" className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Password</Label>
+                                <Input
+                                    id="password"
+                                    type="password"
+                                    placeholder="CNIC"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    disabled={loading}
+                                    className="rounded-sm h-10"
+                                />
+                            </div>
+
+                            <Button type="submit" className="w-full h-10 font-medium rounded-sm mt-4" disabled={loading}>
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Authenticating
+                                    </>
+                                ) : (
+                                    'Sign In'
+                                )}
+                            </Button>
+                        </form>
+                    </CardContent>
+                </Card>
+
+                <p className="text-center text-[10px] text-muted-foreground uppercase tracking-widest mt-8 animate-slide-up-delay-2">
+                    Secured by Polygon
+                </p>
+            </div>
         </div>
     );
 }

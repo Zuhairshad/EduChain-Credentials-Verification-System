@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 16,
         color: '#666',
+        fontWeight: '500',
     },
     form: {
         gap: 16,
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
         borderColor: '#e0e0e0',
     },
     button: {
-        backgroundColor: '#007AFF',
+        backgroundColor: '#000', // Black
         padding: 16,
         borderRadius: 12,
         alignItems: 'center',

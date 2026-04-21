@@ -10,8 +10,8 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "LGU Digital Vault",
-  description: "Your blockchain-verified credentials",
+  title: "EDU Chain Credentials Verification System - Student Portal",
+  description: "Your digital vault for blockchain-verified academic credentials on the Polygon blockchain",
 };
 
 export default function RootLayout({
@@ -21,6 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head suppressHydrationWarning>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@200..800&family=Bungee+Tint&display=swap" rel="stylesheet" />
+      </head>
       <body className={geist.className} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
